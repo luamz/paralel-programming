@@ -1,4 +1,4 @@
-#Parallel Progamming using MPI and C
+# Parallel Progamming using MPI and C
 
 ## Compiling
 Type
