@@ -73,7 +73,7 @@ int main(int argc, char** argv){
 
     /*recebendo de todos os vizinhos de myRank menos 1*/
     for(i = 0; i < (numeroDeVizinhos - 1); i++){
-        printf("Nó %d recebe mensagem de %d         <-------\n", myRank, i);
+        printf("Nó %d recebe mensagem de %d         <-------\n", myRank, status.MPI_SOURCE);
         MPI_Recv(message, 100, MPI_CHAR, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &status);
     }
 
