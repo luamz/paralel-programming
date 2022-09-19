@@ -46,14 +46,14 @@ int main(int argc, char** argv){
         /*enviando para todos os vizinhos de myRank*/
         for (i = 0; i < numeroDeTarefas; i++)
             if (matrizVizinhanca[myRank][i] == 1){
-                printf("Enviando mensagem para %d\n", i);
+                printf("Enviando mensagem de %d para %d     ------->\n", myRank, i);
                 MPI_Send(message, strlen(message)+1, MPI_CHAR, i, tag, MPI_COMM_WORLD);
             }
 
         /*recebendo de todos os vizinhos de myRank*/
         for(i = 0; i < numeroDeVizinhos; i++){
             MPI_Recv(message, 100, MPI_CHAR, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &status);
-            printf("Confirmação do filho %d\n", status.MPI_SOURCE);
+            printf("\n<------- Confirmação do filho %d\n\n", status.MPI_SOURCE);
         }
     }
 
@@ -64,16 +64,21 @@ int main(int argc, char** argv){
     pai = status.MPI_SOURCE;
 
     /*enviando para todos os vizinhos de myRank menos seu pai*/
-    for (i = 0; i < numeroDeTarefas; i++)
-        if ( (matrizVizinhanca[myRank][i] == 1) && (i != pai) )
+    for (i = 0; i < numeroDeTarefas; i++){
+        if ( (matrizVizinhanca[myRank][i] == 1) && (i != pai) ){
+            printf("Enviando mensagem de %d para %d     ------->\n", myRank, i);
             MPI_Send(message, strlen(message)+1, MPI_CHAR, i, tag, MPI_COMM_WORLD);
+        }
+    }
 
     /*recebendo de todos os vizinhos de myRank menos 1*/
-    for(i = 0; i < (numeroDeVizinhos - 1); i++)
+    for(i = 0; i < (numeroDeVizinhos - 1); i++){
+        printf("Nó %d recebe mensagem de %d         <-------\n", myRank, i);
         MPI_Recv(message, 100, MPI_CHAR, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &status);
+    }
 
+    printf("Nó %d envia mensagem para o pai %d  ------->\n", myRank, pai);
     MPI_Send(message, strlen(message)+1, MPI_CHAR, pai, tag, MPI_COMM_WORLD);
-
     }
     
     //Finalização do MPI
