@@ -12,7 +12,7 @@ If your computer does not have enough slots available run ``mpirun -n X --oversu
 
 ## OpenMP
 
-Number of threads can be set up using the following enviroment variable:
+Number of threads can be set up externally by using the following enviroment variable:
 ``export OMP_NUM_THREADS=2`` (bash)
 
 ### Compiling
