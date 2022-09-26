@@ -18,7 +18,6 @@ int main(){
     {
         int i, id, nthrds;
         id = omp_get_thread_num();
-        //printf("%d\n", id);
         nthrds = omp_get_num_threads();
         
         if (id == 0) nthreads = nthrds;
