@@ -20,6 +20,7 @@ int main(){
         for (i=id, sum=0.0; i<num_steps; i=i+nthrds){
             x = (i+0.5)*step;
             
+            // Much more slow, a barrier for each step
             #pragma omp critical 
             pi +=  4.0 / (1.0 + x*x);
         }
