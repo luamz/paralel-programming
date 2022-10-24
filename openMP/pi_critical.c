@@ -21,6 +21,8 @@ int main(){
             x = (i+0.5)*step;
             sum +=  4.0 / (1.0 + x*x);
         }
+        
+        // Much faster, one barrier for each thread
         #pragma omp critical 
             pi += sum * step;
         
