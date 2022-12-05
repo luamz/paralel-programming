@@ -1,5 +1,9 @@
 # Parallel Progamming
 
+
+Practicing parallel programming with MPI and OpenMP.
+
+
 ## MPI
 ### Compiling
 Type
